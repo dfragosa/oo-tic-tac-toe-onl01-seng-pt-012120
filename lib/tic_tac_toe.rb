@@ -26,10 +26,31 @@ class TicTacToe
   end
   
   def move(index, token = "X")
-    @board[0] = "X"
-    @board[4] = "O"
-    
+    @board[index]= token
   end
 
+   def position_taken?(index)
+    @board[index] == " " ? false : true
+  end
+  
+  def valid_move?(index)
+   index.between?(0,8) && !position_taken?(index)
+  end
+  def turn_count?
+  end 
+  def current_player
+  end 
+  def turn_count
+  end 
+  def won?
+  end 
+  def full?
+  end 
+  def draw?
+  end 
+  def over?
+  end 
+  def winner
+  end 
+  
 end
-
