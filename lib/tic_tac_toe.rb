@@ -1,4 +1,6 @@
+require 'pry'
 class TicTacToe
+  attr_reader :board
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
   end
@@ -37,16 +39,38 @@ class TicTacToe
    index.between?(0,8) && !position_taken?(index)
   end
   
-  def turn_count?
-    
+  def turn_count
+   board.count {|token| token == "X" || token == "O"}
   end 
   
   def current_player
+     turn_count % 2 == 0 ? "X" : "O"
   end 
+  
   def turn
-  end 
+    puts "Enter 1-9: "
+    input =  gets.chomp
+   index = input_to_index(input) # used input as arg but not working
+    if valid_move?(index) 
+      move(index, token = "X")
+       current_player
+           display_board
+         elsif
+         !valid_move?(index)
+          turn
+    end 
+ end
+ 
   def won?
+    if  WIN_COMBINATIONS == true
+       WIN_COMBINATIONS.each_with_index do |num, idx| 
+       puts "#{num} #{idx} "
+     end 
+    else 
+      false
+    end
   end 
+  
   def full?
   end 
   def draw?
