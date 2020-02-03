@@ -61,15 +61,16 @@ class TicTacToe
     end 
  end
  
-  def won?
-    if  WIN_COMBINATIONS == true
-       WIN_COMBINATIONS.each_with_index do |num, idx| 
-       puts "#{num} #{idx} "
-     end 
-    else 
-      false
+def won?
+  WIN_COMBINATIONS.detect do |win_combo|
+    if (@board[win_combo[0]]) == "X" && (@board[win_combo[1]]) == "X" && (@board[win_combo[2]]) == "X"
+      return win_combo
+    elsif (@board[win_combo[0]]) == "O" && (@board[win_combo[1]]) == "O" && (@board[win_combo[2]]) == "O"
+      return win_combo
     end
-  end 
+      false
+  end
+end 
   
   def full?
   end 
