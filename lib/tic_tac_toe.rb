@@ -73,20 +73,18 @@ class TicTacToe
   end 
 
   def full?
-   board.all? do |index|
-
-    if index == "X" || index == "O"
-        puts true
-      else
-        false
-    end
+    @board.include?(" ") ? false : true
   end 
-   #b = TicTacToe.new(board) == 9 ? true : false
-      # binding.pry
+   
+   def draw?
+     if !won? && full?
+      return true
+    else 
+      false
+    end
+   #binding.pry
   end 
   
-  def draw?
-  end 
   def over?
   end 
   def winner
