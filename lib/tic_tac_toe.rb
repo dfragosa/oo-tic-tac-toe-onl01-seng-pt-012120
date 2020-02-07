@@ -82,12 +82,25 @@ class TicTacToe
     else 
       false
     end
-   #binding.pry
-  end 
+   end 
   
   def over?
-  end 
-  def winner
+    if won? || full?
+      true
+    else
+      false
+    end 
   end 
   
+  def winner
+    token = won?
+    if !won?
+      nil
+    elsif
+    @board[token[0]] =="X" #|| @board[token[0]] == "O"
+      return "X"
+    else
+      return "O"
+    end
+  end
 end
