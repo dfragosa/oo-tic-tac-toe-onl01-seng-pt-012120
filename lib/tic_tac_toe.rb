@@ -28,12 +28,13 @@ class TicTacToe
   end
   
   def move(index, token = "X")
-    @board[index]= token
+    @board[index.to_i]= token
   end
 
    def position_taken?(index)
-    @board[index] == " " ? false : true
-  end
+    # @board[index] == " " ? false : true
+    !(@board[index.to_i].nil? || @board[index.to_i] == " ")
+   end
   
   def valid_move?(index)
    index.between?(0,8) && !position_taken?(index)
@@ -50,14 +51,12 @@ class TicTacToe
   def turn
     puts "Enter 1-9: "
     input =  gets.chomp
-   index = input_to_index(input) # used input as arg but not working
+    index = input_to_index(input) # used input as arg but not working
     if valid_move?(index) 
-      move(index, token = "X")
-       current_player
-           display_board
-         elsif
-         !valid_move?(index)
-          turn
+      move(index, current_player)
+      display_board
+    else
+      turn
     end 
  end
  
@@ -85,7 +84,7 @@ class TicTacToe
    end 
   
   def over?
-    if won? || full?
+    if won? || full? || draw?
       true
     else
       false
@@ -103,4 +102,18 @@ class TicTacToe
       return "O"
     end
   end
+  
+  def play 
+    until over? 
+      turn
+    end
+    
+    if won?
+      puts "Congratulations #{winner}"
+    elsif draw?
+      puts " It ended in a draw."
+    end
+   #end   
+  end
+
 end
